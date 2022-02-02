@@ -11,11 +11,10 @@
     <title>Laravel-Auth</title>
 </head>
 <body>
-    <h1>laravel auth</h1>
+    <h1 class="text-center">Laravel Auth Home </h1>
 
     <div id="app">
         @yield('content')
     </div>
-    
 </body>
 </html>
