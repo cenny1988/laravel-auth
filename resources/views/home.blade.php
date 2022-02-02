@@ -4,12 +4,14 @@
     {{-- <example-component></example-component> --}}
 
     {{-- titolo --}}
-    @auth
-        <h1>{{ Auth::user() -> name }}</h1>
-        <a class="btn btn-secondary" href="{{ route('logout') }}">LOGOUT</a>
-    @else
-        <h1 class="text-center">If you wanne see my site you have to login/register</h1>
-    @endauth
+    <div class="text-center">
+        @auth
+            <h3>{{ Auth::user() -> name }}</h1>
+            <a class="btn btn-secondary" href="{{ route('logout') }}">LOGOUT</a>
+        @else
+            <h3>If you wanne see my site you have to login/register</h3>
+        @endauth
+    </div>
 
     {{-- Sezione Login --}}
     <div class="card-body">
@@ -17,7 +19,7 @@
             @method('POST')
             @csrf
 
-            <h3 class="h3 text-center">LOGIN</h3>
+            <h3 class="text-center">LOGIN</h3>
             <div class="form-group row">
                 <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
@@ -48,7 +50,7 @@
 
             <div class="form-group row mb-0">
                 <div class="col-md-8 offset-md-4">
-                    <button type="submit" class="btn btn-primary">
+                    <button type="submit" class="btn btn-primary" value="LOGIN">
                         {{ __('Login') }}
                     </button>
                 </div>
