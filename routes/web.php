@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 // Auth::routes();
 
 Route::get('/', 'GuestController@home')->name('home');
-Route::post('/', 'Auth\LoginController@login') -> name('login');
+Route::post('/login', 'Auth\LoginController@login') -> name('login');
 
 Route::get('/logout', 'Auth\LoginController@logout') -> name('logout');
 
