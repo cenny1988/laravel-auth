@@ -6,10 +6,10 @@
     {{-- titolo --}}
     <div class="text-center">
         @auth
-            <h3>{{ Auth::user() -> name }}</h1>
+            <h3>{{ Auth::user() -> name }}</h3>
             <a class="btn btn-secondary" href="{{ route('logout') }}">LOGOUT</a>
         @else
-            <h3>If you wanne see my site you have to login/register</h3>
+            <h3>Registrati per loggarti nel sito</h3>
         @endauth
     </div>
 
