@@ -1924,9 +1924,53 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      employees: []
+    };
+  },
   mounted: function mounted() {
-    console.log('Component mounted.');
+    this.getAllEmployees();
+  },
+  methods: {
+    getAllEmployees: function getAllEmployees() {
+      var _this = this;
+
+      axios.get('/emps/list').then(function (result) {
+        var data = result.data;
+        _this.employees = data;
+      })["catch"](function (err) {
+        console.error(err);
+      });
+    },
+    deleteEmp: function deleteEmp(id) {
+      var _this2 = this;
+
+      axios.get("/emp/list/".concat(id)).then(function (result) {
+        var data = result.data;
+
+        if (data) {
+          var ind = _this2.getIndById(_this2.employees, id);
+
+          _this2.employees.splice(ind, 1);
+        }
+      })["catch"](function (err) {
+        console.error(err);
+      });
+    },
+    getIndById: function getIndById(array, id) {
+      for (var x = 0; x < array.length; x++) {
+        var elem = array[x];
+        if (elem.id == id) return x;
+      }
+
+      return -1;
+    }
   }
 });
 
@@ -37518,32 +37562,49 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("Example Component"),
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm._v(
-                "\n                    I'm an example component.\n                "
-              ),
-            ]),
+  return _c("div", { staticClass: "container mt-5" }, [
+    _c("div", { staticClass: "row justify-content-center" }, [
+      _c("div", { staticClass: "col-md-8" }, [
+        _c("div", { staticClass: "card" }, [
+          _c("div", { staticClass: "card-header" }, [
+            _vm._v("Lista Employees: " + _vm._s(_vm.employees.length) + " "),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-body" }, [
+            _c(
+              "ul",
+              _vm._l(_vm.employees, function (employee, i) {
+                return _c("li", { key: i }, [
+                  _vm._v(
+                    "\n                            " +
+                      _vm._s(employee.first_name) +
+                      " " +
+                      _vm._s(employee.last_name) +
+                      " - "
+                  ),
+                  _c(
+                    "a",
+                    {
+                      staticClass: "btn btn-danger btn-sm mb-3",
+                      on: {
+                        click: function ($event) {
+                          return _vm.deleteEmp(employee.id)
+                        },
+                      },
+                    },
+                    [_vm._v("DELETE")]
+                  ),
+                ])
+              }),
+              0
+            ),
           ]),
         ]),
       ]),
-    ])
-  },
-]
+    ]),
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 

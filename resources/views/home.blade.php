@@ -1,19 +1,20 @@
 @extends('layouts.main-layout')
 @section('content')
-    {{-- component esempio collegato e funzionante --}}
-    {{-- <example-component></example-component> --}}
 
     {{-- titolo --}}
     <div class="text-center">
         @auth
             <h3>{{ Auth::user() -> name }}</h3>
-            <a class="btn btn-secondary" href="{{ route('logout') }}">LOGOUT</a>
+            <a class="btn btn-secondary mb-3" href="{{ route('logout') }}">LOGOUT</a>
         @else
             <h3>Registrati per loggarti nel sito</h3>
         @endauth
     </div>
 
     {{-- Sezione Login --}}
+    {{-- il @guest visualizza o no la sezione se loggati --}}
+    @guest
+        
     <div class="card-body">
         <form method="POST" action="{{ route('login') }}">
             @method('POST')
@@ -133,5 +134,22 @@
             </div>
         </div>
     </div>
+
+    @else
+    {{-- component esempio collegato e funzionante --}}
+    <example-component></example-component>
+
+    @endguest
+
+    {{-- Visualizza errori nella digitazione dei campi form precedenti --}}
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
 @endsection

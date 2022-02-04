@@ -26,3 +26,5 @@ Route::get('/logout', 'Auth\LoginController@logout') -> name('logout');
 
 Route::post('/register', 'Auth\RegisterController@register') -> name('register');
 
+Route::get('/emps/list', 'GuestController@apiGetEmps') -> name('api.getEmps');
+Route::get('/emp/list/{id}', 'GuestController@apiDeleteEmp') -> name('api.deleteEmp');
