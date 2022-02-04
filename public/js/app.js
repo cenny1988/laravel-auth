@@ -1937,6 +1937,11 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     this.getAllEmployees();
   },
+  computed: {
+    filteredEmployees: function filteredEmployees() {
+      return this.employees;
+    }
+  },
   methods: {
     getAllEmployees: function getAllEmployees() {
       var _this = this;
@@ -37573,7 +37578,7 @@ var render = function () {
           _c("div", { staticClass: "card-body" }, [
             _c(
               "ul",
-              _vm._l(_vm.employees, function (employee, i) {
+              _vm._l(_vm.filteredEmployees, function (employee, i) {
                 return _c("li", { key: i }, [
                   _vm._v(
                     "\n                            " +

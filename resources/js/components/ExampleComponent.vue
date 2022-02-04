@@ -7,7 +7,7 @@
 
                     <div class="card-body">
                         <ul>
-                            <li v-for="employee, i in employees" :key="i">
+                            <li v-for="employee, i in filteredEmployees" :key="i">
                                 {{employee.first_name}} {{employee.last_name}} - <a @click="deleteEmp(employee.id)" class="btn btn-danger btn-sm mb-3" >DELETE</a>
                             </li>
                         </ul>
@@ -27,6 +27,11 @@
         },
         mounted() {
             this.getAllEmployees()
+        },
+        computed: {
+            filteredEmployees(){
+                return this.employees;
+            }
         },
         methods: {
             getAllEmployees(){
